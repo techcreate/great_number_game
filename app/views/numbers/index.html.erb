@@ -1,0 +1,23 @@
+<h1>Welcome to the Great Number Game!</h1>
+<p>I am thinking of a number between 1 and 100</p>
+<p>Take a guess!</p>
+
+<form action="/submit_number" method="post">
+	<input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
+	<input type="text" name="guess">
+	<input type="submit" name="submit">
+</form>
+<% if flash[:status] == true %>
+	<div class="well message" id="green">
+		<p><%= flash[:message] %></p>
+	</div>
+<% elsif flash[:status] == false %>
+	<div class="well message" id="red">
+		<p><%= flash[:message] %></p>
+	</div>
+<% end %>	
+<!-- <p><%= session[:random_number] %></p> -->
+<form action="/reset_number" method="post">
+<input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
+	<input type="submit" value="Reset">
+</form>
